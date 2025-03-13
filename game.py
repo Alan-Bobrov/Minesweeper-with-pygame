@@ -1,4 +1,5 @@
 import pygame as pg
+from images.images import *
 
 def game():
     pg.init()
@@ -9,7 +10,8 @@ def game():
     is_game = True
 
     while is_game:
-
+        screen.blit(settings_menu, (0, 0))
+        
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 is_game = False
