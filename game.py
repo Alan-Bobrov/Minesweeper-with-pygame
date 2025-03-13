@@ -13,7 +13,7 @@ def game():
 
     while is_game:
         settings_screen.blit(settings_menu, (0, 0))
-        if difficulty and 0:
+        if difficulty:
             if difficulty == "Beginner":
                 settings_screen.blit(selecting_arrow, (8, 192))
             elif difficulty == "Intermediate":
@@ -25,18 +25,18 @@ def game():
             if event.type == pg.QUIT:
                 is_game = False
                 break
-                    
+
             elif (event.type == pg.MOUSEBUTTONDOWN) and (pg.mouse.get_pressed(num_buttons=3)[0]):
                 x, y = pg.mouse.get_pos()
                 print(x, y)
 
-
-                '''if () and ():
-                    pass
+                if (0 < x < 330) and (185 < y < 250):
+                    print(1)
+                    difficulty = "Beginner"
                 elif () and ():
                     pass
                 elif () and ():
-                    pass'''
+                    pass
 
         pg.display.flip()
 
