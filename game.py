@@ -4,13 +4,14 @@ from images.images import *
 def game():
     pg.init()
 
-    screen = pg.display.set_mode((500, 400))
-    screen.fill((255, 255, 255))
-
+    settings_screen = pg.display.set_mode((500, 400))
+    settings_screen.fill((255, 255, 255))
+    pg.display.set_caption("Minesweeper with pygame")
+    
     is_game = True
 
     while is_game:
-        screen.blit(settings_menu, (0, 0))
+        settings_screen.blit(settings_menu, (0, 0))
         
         for event in pg.event.get():
             if event.type == pg.QUIT:
