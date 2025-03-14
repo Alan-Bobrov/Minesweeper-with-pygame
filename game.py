@@ -46,7 +46,15 @@ def SettingsMenu():
 
         pg.display.flip()
 
-a = SettingsMenu()
-print(a)
+def game():
+    settings = SettingsMenu()
+    print(settings)
+    if settings == 0:
+        return 0
+    else:
+        print(1)
+        
 
+
+game()
 print("end")
