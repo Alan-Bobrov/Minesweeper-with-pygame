@@ -13,7 +13,7 @@ class Field:
         self.colums_num = self.dict_hards[hard][1]
         self.rows_num = self.dict_hards[hard][0]
         field =  [[Position(0, 0, "None", "None") for __ in range(self.rows_num)]]
-        field += [[Position(0, 0, "None", "None")] + [Position(X, Y) for X in range(self.colums_num)] + [Position(0, 0, "None", "None")] for Y in range(self.rows_num)]
+        field += [[Position(0, 0, "None", "None")] + [Position(X, Y) for X in range(self.rows_num)] + [Position(0, 0, "None", "None")] for Y in range(self.colums_num)]
         field += [[Position(0, 0, "None", "None") for __ in range(self.rows_num)]]
         self.field = field
 
@@ -72,7 +72,7 @@ class Position:
     def actions_positions(self): #Need to do
         pass
 
-f = Field(hard="Beginner")
+f = Field(hard="Expert")
 f.setting_mines()
 for i in f.field:
     for j in i:
