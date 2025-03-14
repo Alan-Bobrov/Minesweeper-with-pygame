@@ -72,9 +72,10 @@ class Position:
     def actions_positions(self): #Need to do
         pass
 
-f = Field(hard="Expert")
-f.setting_mines()
-for i in f.field:
-    for j in i:
-        print(j.symbol, end="   ")
-    print()
+# f = Field(hard="Expert")
+# f.setting_mines()
+# for i in f.field:
+#     for j in i:
+#         print(j.symbol, end="   ")
+#     print()
+# CTRL + /
