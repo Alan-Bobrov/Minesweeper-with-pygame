@@ -91,7 +91,7 @@ class Field:
                     self.field[Y][X].status = "open"
                     self.sumbol = " "
         else:
-
+            pass
 
 class Cell:
     def __init__(self, X, Y, status="free", symbol="  ") -> None: #Maybe need to change
