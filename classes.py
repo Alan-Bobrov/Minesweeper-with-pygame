@@ -15,6 +15,7 @@ class Field:
                 self.num_mines = self.dict_hards[key][2]
                 self.Y_num = self.dict_hards[key][1]
                 self.X_num = self.dict_hards[key][0]
+                self.free_flag_num = self.dict_hards[key][2]
         field =  [[Cell(0, 0, "None", "None") for __ in range(self.X_num + 2)]]
         field += [[Cell(0, 0, "None", "None")] + [Cell(X, Y) for X in range(self.X_num)] + [Cell(0, 0, "None", "None")] for Y in range(self.Y_num)]
         field += [[Cell(0, 0, "None", "None") for __ in range(self.X_num + 2)]]
@@ -31,18 +32,17 @@ class Field:
                     self.field[Y][X].status = "mine"
                     break
 
-    def open_something(self, find_status, new_status) -> None:  #Need to change, look normal
+    def open_something(self, finding_status, new_status) -> None:  #Meybe done, look normal
         changes = 0
         while True:
-            for i in range(1, self.L_and_W[1] + 1):
-                for j in range(1, self.L_and_W[0] + 1):
-                    if self.field[i][j].status == find_status:
-                        list_places = [(i - 1, j - 1), (i - 1, j), (i - 1, j + 1), (i, j - 1)]
-                        list_places.extend([(i, j + 1), (i + 1, j - 1), (i + 1, j), (i + 1, j + 1)])
+            for Y in range(1, self.Y_num + 1):
+                for X in range(1, self.X_num + 1):
+                    if self.field[Y][X].status == finding_status:
+                        list_near_cells = ([X - 1, Y - 1], [X, Y - 1], [X + 1, Y - 1], [X - 1, Y], [X + 1, Y], [X - 1, Y + 1], [X, Y + 1], [X + 1, Y + 1])
 
-                        for item in list_places:
-                            if self.field[item[0]][item[1]].status == "open":
-                                self.field[i][j].status = new_status
+                        for cell in list_near_cells:
+                            if self.field[cell[1]][cell[0]].status == "open":
+                                self.field[Y][X].status = new_status
                                 changes += 1
                                 break
             if changes == 0:
@@ -80,8 +80,18 @@ class Field:
                     return False
         return True
 
-    def move(self, first_move=False) -> str: #Need to do
-        pass
+    def move(self, X, Y, first_move=False) -> str: #Need to do
+        if first_move:
+            self.field[Y][X].status = "open"
+            self.field[Y][X].sumbol = " "
+
+            list_near_cells = ([X - 1, Y - 1], [X, Y - 1], [X + 1, Y - 1], [X - 1, Y], [X + 1, Y], [X - 1, Y + 1], [X, Y + 1], [X + 1, Y + 1])
+            for cell in list_near_cells:
+                if self.field[Y][X].status != "None":
+                    self.field[Y][X].status = "open"
+                    self.sumbol = " "
+        else:
+
 
 class Cell:
     def __init__(self, X, Y, status="free", symbol="  ") -> None: #Maybe need to change
@@ -90,7 +100,7 @@ class Cell:
         self.status = status
         self.symbol = symbol
 
-    def actions_cells(self): #Need to do
+    def actions_with_cells(self): #Need to do
         pass
 
 f = Field(hard=1)
