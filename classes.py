@@ -103,8 +103,8 @@ class Cell:
     def actions_with_cells(self): #Need to do
         pass
 
-f = Field(hard=1)
-f.setting_mines()
-f.count_near_mines()
-f.print_field_console()
+# f = Field(hard=1)
+# f.setting_mines()
+# f.count_near_mines()
+# f.print_field_console()
 # CTRL + /
