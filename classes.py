@@ -80,18 +80,29 @@ class Field:
                     return False
         return True
 
-    def move(self, X, Y, first_move=False) -> str: #Need to do
+    def move(self, X, Y, type_action=None, first_move=False) -> str: #Need to do
         if first_move:
-            self.field[Y][X].status = "open"
+            self.field[Y][X].status += " opened"
             self.field[Y][X].sumbol = " "
 
             list_near_cells = ([X - 1, Y - 1], [X, Y - 1], [X + 1, Y - 1], [X - 1, Y], [X + 1, Y], [X - 1, Y + 1], [X, Y + 1], [X + 1, Y + 1])
             for cell in list_near_cells:
                 if self.field[Y][X].status != "None":
-                    self.field[Y][X].status = "open"
+                    self.field[Y][X].status = "opened"
                     self.sumbol = " "
         else:
-            pass
+            if str(type_action) in ("1", "flag"):
+                if "flag" in self.field[Y][X].status:
+                    self.field[Y][X].status =  self.field[Y][X].status[0]
+                else:
+                    self.field[Y][X].status += " flag"
+            elif str(type_action) in ("2", "open_cell"):
+                if self.field[Y][X].status == "mine":
+                    return "game_over"
+                else:
+                    self.field[Y][X].status += " opened"
+
+        return "all_good"
 
 class Cell:
     def __init__(self, X, Y, status="free", symbol="  ") -> None: #Maybe need to change
@@ -99,9 +110,6 @@ class Cell:
         self.Y = Y
         self.status = status
         self.symbol = symbol
-
-    def actions_with_cells(self): #Need to do
-        pass
 
 # f = Field(hard=1)
 # f.setting_mines()
